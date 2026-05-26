@@ -26,7 +26,7 @@ var menuLinks = [
 // Step 1: Main content element
 const mainEl = document.querySelector('main');
 mainEl.style.backgroundColor = 'var(--main-bg)';
-mainEl.innerHTML = '<h1>DOM Manipulation</h1>';
+mainEl.innerHTML = '<h1>DOM Manipulation: Part 2</h1>';//to get specific...too much data
 mainEl.classList.add('flex-ctr');
 
 // Step 2: Top menu nav bar
@@ -63,42 +63,33 @@ console.log("=================Part 4: Adding Menu Interaction===================
 
 // In order to add submenu links, we will need to restructure the menuLinks 
 // array within index.js. Update the menuLinks array to the following:
-const topMenuLinks = topMenuEl.querySelector("a");
+
+const topMenuLinks = topMenuEl.querySelectorAll("a");// Select and cache the all of the <a> elements inside of topMenuEl in a variable named topMenuLinks.
+// Attach a delegated 'click' event listener to topMenuEl.
 topMenuEl.addEventListener('click', function (e) {
-  e.preventDefault()
-  if (e.target.tagName !== "a") {
+  e.preventDefault()// The first line of code of the event listener function should
+//  call the event object's preventDefault() method.
+  if (e.target.tagName !== "a") {// The second line of code of the function should immediately return 
+// if the element clicked was not an <a> element.
     return;
-    console.log(e.target.textContent)
+    console.log("a".target.textContent)// Log the content of the <a> to verify the handler is working.
   }
 })
 
+topMenuEl.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (e.target.tagName !== 'A') return;//This line cancels that default 
+  //behavior so clicking a menu link doesn't cause a page reload or navigation.
+  console.log(e.target.textContent);
 
-topMenuLinks.addEventListener('click', function (v)){
-  v.preventDefault()
-  if (e.target.tagName !== "A") {
-    console.log(v.target.textContent)
-    topMenuLinks.forEach (href => href.classList.remove('active'))
-    if(!v.target.classList.add('active')) {
-      v.target.
-    } 
-  }
-}
+  topMenuLinks.forEach(link => link.classList.remove('active'));
+  e.target.classList.add('active');
+});   
 
-
-// topMenuEl.body.addEventListener('click', function(e){
-//   e.preventDefault()
-//   if(e.target.tagName !== "a") {
-//     return 
-//       console.log(e.target);
-
-//   }
-// });
+// Progress Check - Ensure that clicking ABOUT, CATALOG, etc. logs about, catalog, etc. when 
+// a link is clicked. Clicking anywhere other than on a link should do nothing.
 
 
-// Select and cache the all of the <a> elements inside of topMenuEl in a variable named topMenuLinks.
-// Attach a delegated 'click' event listener to topMenuEl.
-// The first line of code of the event listener function should
-//  call the event object's preventDefault() method.
-// The second line of code of the function should immediately return 
-// if the element clicked was not an <a> element.
-// Log the content of the <a> to verify the handler is working.
+
+
+
