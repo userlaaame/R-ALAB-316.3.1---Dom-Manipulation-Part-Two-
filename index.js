@@ -1,3 +1,9 @@
+console.log("=================Part 1: Getting Started===================")
+// Take a few moments to explore your code and refamiliarize yourself 
+// with it. Now that you have a deeper understanding of DOM manipulation
+// concepts, if there is anything you would like to fix or change, 
+// now is the time to do so.
+
 // Menu data structure
 var menuLinks = [
   { text: 'about', href: '/about' },
@@ -43,6 +49,9 @@ menuLinks.forEach(function (link) {
   topMenuEl.appendChild(a);
 });
 
+console.log("=================Part 3: Creating the Submenu===================")
+
+
 const subMenuEl = document.querySelector('#sub-menu');
 if (subMenuEl) {
   subMenuEl.style.color = "blue";
@@ -84,12 +93,28 @@ topMenuEl.addEventListener('click', function (e) {
 
   topMenuLinks.forEach(link => link.classList.remove('active'));
   e.target.classList.add('active');
+
+    const link = menuLinks.find(menuLink => menuLink.text === e.target.textContent);
+
+  if (link.subLinks) {
+    subMenuEl.style.top = '100%';
+  } else {
+    subMenuEl.style.top = '0';
+  }
 });   
 
 // Progress Check - Ensure that clicking ABOUT, CATALOG, etc. logs about, catalog, etc. when 
 // a link is clicked. Clicking anywhere other than on a link should do nothing.
 
 
+console.log("=================Part 5: Adding Submenu Interaction===================")
 
+// Within the event listener, if the clicked <a> element does not yet have a class of "active"
+// (it was inactive when clicked):
+// If the clicked <a> element's "link" object within menuLinks has a subLinks property 
+// (all do, except for the "link" object for ABOUT), set the CSS top property of subMenuEl to 100%.
+// Otherwise, set the CSS top property of subMenuEl to 0.
+// Hint: Caching the "link" object will come in handy for passing its subLinks array later.
 
+//GO UP
 
